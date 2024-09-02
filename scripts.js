@@ -68,9 +68,12 @@ $(document).ready(function () {
                     (selectedViewStatus === "unseen" && !isSeen));
         });
 
-        // Sort the filtered movies based on chronology order
+        // Ensure sorting by treating chronology as numbers
         filteredMovies.sort((a, b) => {
-            return selectedChronologySort === 'asc' ? a.chronology - b.chronology : b.chronology - a.chronology;
+            const aChronology = parseInt(a.chronology, 10);
+            const bChronology = parseInt(b.chronology, 10);
+
+            return selectedChronologySort === 'asc' ? aChronology - bChronology : bChronology - aChronology;
         });
 
         const moviesContainer = $("#movies-container");
