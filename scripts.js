@@ -29,7 +29,7 @@ $(document).ready(function () {
         });
 
         // Event listeners for filters
-        $('#saga-filter, #year-filter, #phase-filter, #view-status-filter, #chronology-sort').on('change', function () {
+        $('#saga-filter, #year-filter, #phase-filter, input[name="viewStatus"], input[name="sortOrder"]').on('change', function () {
             loadMovies();
             updateFilterInfo();
         });
@@ -39,8 +39,10 @@ $(document).ready(function () {
             $('#saga-filter').val('');
             $('#year-filter').val('');
             $('#phase-filter').val('');
-            $('#view-status-filter').val('');
-            $('#chronology-sort').val('asc'); // Reset chronology sort to ascending
+            $('input[name="viewStatus"]').prop('checked', false);
+            $('#view-all').prop('checked', true); // Reset view status to all
+            $('input[name="sortOrder"]').prop('checked', false);
+            $('#sort-chronology-asc').prop('checked', true); // Reset sort order to chronology ascending
             loadMovies();
             updateFilterInfo();
         });
@@ -52,8 +54,8 @@ $(document).ready(function () {
         const selectedSaga = $('#saga-filter').val();
         const selectedYear = $('#year-filter').val();
         const selectedPhase = $('#phase-filter').val();
-        const selectedViewStatus = $('#view-status-filter').val();
-        const selectedChronologySort = $('#chronology-sort').val();
+        const selectedViewStatus = $('input[name="viewStatus"]:checked').val();
+        const selectedSortOrder = $('input[name="sortOrder"]:checked').val();
 
         let filteredMovies = moviesData.filter(movie => {
             const movieYear = new Date(movie.release_date).getFullYear();
@@ -68,12 +70,25 @@ $(document).ready(function () {
                     (selectedViewStatus === "unseen" && !isSeen));
         });
 
-        // Ensure sorting by treating chronology as numbers
+        // Sorting based on the selected sort order
         filteredMovies.sort((a, b) => {
             const aChronology = parseInt(a.chronology, 10);
             const bChronology = parseInt(b.chronology, 10);
+            const aDate = new Date(a.release_date);
+            const bDate = new Date(b.release_date);
 
-            return selectedChronologySort === 'asc' ? aChronology - bChronology : bChronology - aChronology;
+            switch (selectedSortOrder) {
+                case 'chronology-asc':
+                    return aChronology - bChronology;
+                case 'chronology-desc':
+                    return bChronology - aChronology;
+                case 'date-asc':
+                    return aDate - bDate;
+                case 'date-desc':
+                    return bDate - aDate;
+                default:
+                    return 0;
+            }
         });
 
         const moviesContainer = $("#movies-container");
@@ -123,7 +138,7 @@ $(document).ready(function () {
         const saga = $('#saga-filter').val();
         const year = $('#year-filter').val();
         const phase = $('#phase-filter').val();
-        const status = $('#view-status-filter').val();
+        const status = $('input[name="viewStatus"]:checked').val();
         const filtersActive = saga || year || phase || status;
 
         $('#reset-filters').toggleClass('btn-danger', filtersActive).toggleClass('btn-secondary', !filtersActive);
