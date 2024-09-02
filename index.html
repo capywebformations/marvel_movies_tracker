@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Movies Tracker</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Marvel Movies Tracker</h1>
+        <!-- Filter section -->
+        <div class="filter-container row mb-4">
+            <div class="col-md-3">
+                <select id="saga-filter" class="form-control">
+                    <option value="">All Sagas</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="phase-filter" class="form-control">
+                    <option value="">All Phases</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="year-filter" class="form-control">
+                    <option value="">All Years</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="view-status-filter" class="form-control">
+                    <option value="">All Status</option>
+                    <option value="seen">Seen</option>
+                    <option value="unseen">Unseen</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button id="reset-filters" class="btn btn-secondary w-100">Reset Filters</button>
+            </div>
+        </div>
+        <div id="filter-info" class="mb-3"></div>
+        <!-- Row class added for cards container -->
+        <div id="movies-container" class="row gx-4 gy-4"></div>
+    </div>
+
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Moment.js for date formatting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <!-- Movies Data -->
+    <script src="moviesData.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts.js"></script>
+</body>
+
+</html>

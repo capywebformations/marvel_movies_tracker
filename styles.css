@@ -1,0 +1,76 @@
+.card {
+    cursor: pointer;
+    transition: transform 0.2s;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 420px;
+    /* Ensures minimum height to avoid overlap */
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding: 10px;
+    /* Adds padding inside the card */
+    height: 100%;
+    /* Make sure card body takes full height */
+}
+
+.btn-trailer,
+.btn-seen {
+    width: calc(100% - 20px);
+    /* Full width minus the margin for aesthetic spacing */
+    margin: 5px 10px;
+    /* Adds margin for spacing around the buttons */
+    border: none;
+}
+
+.btn-trailer {
+    background-color: #6c757d;
+    /* Grey color for trailer button */
+    color: white;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    /* Blue color for seen button (default) */
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    /* Grey color for seen button when already marked */
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    /* Red color for reset button when filters are active */
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    /* Adds a hover effect */
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    /* Space below the filter container */
+}
+
+#reset-filters {
+    height: 38px;
+    /* Aligns the height with select inputs */
+}
